@@ -150,6 +150,7 @@ to get the desired effect
                         else{
                         $query2 = "
                                     SELECT
+                                        krs.idKrs,
                                         krs.npm,
                                         mahasiswa.nama,
                                         prodi.namaProdi 
@@ -179,13 +180,96 @@ to get the desired effect
                                 </td>
                                 <td>
                                     <button class="btn btn-outline-success"
-                                            onclick="openForm()"
                                             data-toggle="modal"
-                                            data-target="#input_new">
+                                            data-target="#<?php echo $qtabel2["idKrs"]; ?>">
                                         Input
                                     </button>
                                 </td>
                             </tr>
+                            <div class="modal fade -modal-lg" id="<?php echo $qtabel2["idKrs"]; ?>" role="dialog">
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
+                                    <div class="modal-content">
+                                        <!--Modal Header-->
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="MhsData">
+                                                <?php
+                                                $id = $qtabel2["idKrs"];
+                                                $query_label = mysqli_query($koneksi,"SELECT 
+                                                                                                krs.npm,
+                                                                                                mahasiswa.nama 
+                                                                                             FROM krs JOIN mahasiswa
+                                                                                             ON krs.npm = mahasiswa.npm 
+                                                                                             WHERE idKrs='$id'");
+                                                while ($tampil = mysqli_fetch_assoc($query_label)) { ?>
+                                                    <b>Nama :</b> <?php echo $tampil["nama"] ?> <br>
+                                                    <b>NPM :</b> <?php echo $tampil["npm"] ?>
+                                                <?php } ?>
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <!--Modal Body-->
+                                        <div class="modal-body">
+                                            <div class="container-fluid">
+                                                <?php
+                                                $id;
+                                                $query_input = mysqli_query($koneksi,"SELECT 
+                                                                                                matakuliah.matkul,
+                                                                                                matakuliah.sks,
+                                                                                                semester_pilihan.tugas,
+                                                                                                semester_pilihan.absensi,
+                                                                                                semester_pilihan.uts,
+                                                                                                semester_pilihan.uas 
+                                                                                             FROM semester_pilihan JOIN matakuliah
+                                                                                             ON semester_pilihan.kodeMatkul = matakuliah.kodeMatkul 
+                                                                                             WHERE idKrs='$id'");
+                                                while ($tampil_input = mysqli_fetch_assoc($query_input)) { ?>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <label class="col-form-label"><b><?php echo $tampil_input["matkul"] ?></b></label>
+                                                            <label class="col-form-label"><b>[ Nilai SKS = <?php echo $tampil_input["sks"] ?> ]</b></label>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <input class="form-control"
+                                                                   type="text"
+                                                                   name="<?php echo $tampil_input["tugas"] ?>"
+                                                                   placeholder="Nilai Tugas"
+                                                                   required>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <input class="form-control"
+                                                                   type="text"
+                                                                   name="<?php echo $tampil_input["absensi"] ?>"
+                                                                   placeholder="Nilai Absensi"
+                                                                   required>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <input class="form-control"
+                                                                   type="text"
+                                                                   name="<?php echo $tampil_input["uts"] ?>"
+                                                                   placeholder="Nilai UTS"
+                                                                   required>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <input class="form-control"
+                                                                   type="text"
+                                                                   name="<?php echo $tampil_input["uas"] ?>"
+                                                                   placeholder="Nilai UAS"
+                                                                   required>
+                                                        </div>
+                                                    </div>
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+                                        <!--Modal Footer-->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                                            <button type="button" class="btn btn-primary submitBtn" onclick="kirimContactForm()">SIMPAN</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             </tbody>
                         <?php } ?>
 
@@ -199,125 +283,21 @@ to get the desired effect
         </div>
       </div>
     </section>
-<!-- REQUIRED SCRIPTS -->
 
+<!-- REQUIRED SCRIPTS -->
 <!-- jQuery -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
+    <script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap -->
-<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE -->
-<script src="../../dist/js/adminlte.js"></script>
+    <script src="../../dist/js/adminlte.js"></script>
 
 <!-- OPTIONAL SCRIPTS -->
-<script src="../../plugins/chart.js/Chart.min.js"></script>
-<script src="../../dist/js/demo.js"></script>
-<script src="../../dist/js/pages/dashboard.js"></script>
+    <script src="../../plugins/chart.js/Chart.min.js"></script>
+    <script src="../../dist/js/demo.js"></script>
+    <script src="../../dist/js/pages/dashboard.js"></script>
+    <script src="script.js"></script>
+      
 
-        <div class="modal fade -modal-lg" id="input_new" role="dialog">
-          <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-              <!--Modal Header-->
-              <div class="modal-header">
-                <h5 class="modal-title" id="labelModalKu">
-                  <b>Nama :</b> Juli Wing Moula <br>
-                  <b>NPM :</b> 1412160015
-                </h5>
-                <button type="button" class="close" data-dismiss="modal">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <!--Modal Body-->
-              <div class="modal-body">
-                <div class="container-fluid">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <label class="col-form-label"><b>Pemrograman 6 </b></label>
-                      <label class="col-form-label"><b>[Nilai SKS : 3]</b></label>
-                    </div>
-                    <div class="col-md-2">
-                      <input class="form-control"
-                             type="text"
-                             name="nilai_tugas"
-                             placeholder="Nilai Tugas"
-                             required>
-                    </div>
-                    <div class="col-md-2">
-                      <input class="form-control"
-                             type="text"
-                             name="nilai_absensi"
-                             placeholder="Nilai Absensi"
-                             required>
-                    </div>
-                    <div class="col-md-2">
-                      <input class="form-control"
-                             type="text"
-                             name="nilai_uts"
-                             placeholder="Nilai UTS"
-                             required>
-                    </div>
-                    <div class="col-md-2">
-                      <input class="form-control"
-                             type="text"
-                             name="nilai_uas"
-                             placeholder="Nilai UAS"
-                             required>
-                    </div>
-                  </div>
-
-                    <div class="row">
-                        <div class="col-md-4">
-                            <label class="col-form-label"><b>Pemrograman 6 </b></label>
-                            <label class="col-form-label"><b>[Nilai SKS : 3]</b></label>
-                        </div>
-                        <div class="col-md-2">
-                            <input class="form-control"
-                                   type="text"
-                                   name="nilai_tugas"
-                                   placeholder="Nilai Tugas"
-                                   required>
-                        </div>
-                        <div class="col-md-2">
-                            <input class="form-control"
-                                   type="text"
-                                   name="nilai_absensi"
-                                   placeholder="Nilai Absensi"
-                                   required>
-                        </div>
-                        <div class="col-md-2">
-                            <input class="form-control"
-                                   type="text"
-                                   name="nilai_uts"
-                                   placeholder="Nilai UTS"
-                                   required>
-                        </div>
-                        <div class="col-md-2">
-                            <input class="form-control"
-                                   type="text"
-                                   name="nilai_uas"
-                                   placeholder="Nilai UAS"
-                                   required>
-                        </div>
-                    </div>
-                </div>
-              </div>
-              <!--Modal Footer-->
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-primary submitBtn" onclick="kirimContactForm()">SIMPAN</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <script src="script.js"></script>
-        <script>
-            function openForm() {
-                document.getElementById("js_input").style.display = "block";
-            }
-
-            function closeForm() {
-                document.getElementById("js_input").style.display = "none";
-            }
-        </script>
 </body>
 </html>
