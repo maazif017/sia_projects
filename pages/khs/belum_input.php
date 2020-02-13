@@ -81,13 +81,13 @@ to get the desired effect
                                     <div class="row">
                                         <div class="col-md-6">
                                                 <select class="custom-select" id="prodi_search" name="prodi_search">
-                                                  <option selected>Semua Jurusan ...</option>
-                                                  <?php
-                                                  $query = "select * from prodi";
-                                                  $hasil = mysqli_query($koneksi, $query);
-                                                  while ($qtabel = mysqli_fetch_assoc($hasil)){
+                                                    <option selected value="">Semua Jurusan ...</option>
+                                                    <?php
+                                                    $query = "select * from prodi";
+                                                    $hasil = mysqli_query($koneksi, $query);
+                                                    while ($qtabel = mysqli_fetch_assoc($hasil)){
                                                       echo '<option value="'.$qtabel['namaProdi'].'">'.$qtabel['namaProdi'].'</option>';
-                                                  } ?>
+                                                    } ?>
                                                 </select>
                                         </div>
                                         <div class="col-md-5">
@@ -121,7 +121,7 @@ to get the desired effect
                         </tr>
                         </thead>
                         <?php
-                        if (isset($_GET['prodi_search'])){
+                        if (isset($_GET['prodi_search']) && $_GET['prodi_search'] !== 'unknown'){
                             $cari = $_GET['prodi_search'];
                             $query2 = "
                                     SELECT
@@ -186,57 +186,6 @@ to get the desired effect
                                     </button>
                                 </td>
                             </tr>
-                            <!--<tr>
-                              <td>1412160045</td>
-                              <td>Budi Achmad</td>
-                              <td>
-                                <span class="tag tag-warning">
-                                  Teknik Informatika
-                                </span>
-                              </td>
-                              <td>
-                                <button class="btn btn-outline-success"
-                                        onclick="openForm()"
-                                        data-toggle="modal"
-                                        data-target="#input_new">
-                                  Input
-                                </button>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>1412160022</td>
-                              <td>Achmad Ronal</td>
-                              <td>
-                                <span class="tag tag-warning">
-                                  Teknik Sipil
-                                </span>
-                              </td>
-                              <td>
-                                <button class="btn btn-outline-success"
-                                        onclick="openForm()"
-                                        data-toggle="modal"
-                                        data-target="#input_new">
-                                  Input
-                                </button>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>1412160011</td>
-                              <td>Budi Handuk</td>
-                              <td>
-                                <span class="tag tag-warning">
-                                  Teknik Desain
-                                </span>
-                              </td>
-                              <td>
-                                <button class="btn btn-outline-success"
-                                        onclick="openForm()"
-                                        data-toggle="modal"
-                                        data-target="#input_new">
-                                  Input
-                                </button>
-                                </td>
-                            </tr>-->
                             </tbody>
                         <?php } ?>
 
@@ -360,7 +309,7 @@ to get the desired effect
           </div>
         </div>
 
-
+        <script src="script.js"></script>
         <script>
             function openForm() {
                 document.getElementById("js_input").style.display = "block";
