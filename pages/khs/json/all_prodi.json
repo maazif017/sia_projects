@@ -1,0 +1,14 @@
+{
+    "all_prodi": [
+        {
+            "idProdi": "1",
+            "fakultas": "teknik",
+            "namaProdi": "informatika"
+        },
+        {
+            "idProdi": "2",
+            "fakultas": "teknik",
+            "namaProdi": "industri"
+        }
+    ]
+}

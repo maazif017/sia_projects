@@ -50,7 +50,7 @@ to get the desired effect
       <a href="../../index.html" class="brand-link">
           <img src="../../dist/img/unirow.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                style="opacity: .8">
-          <span class="brand-text font-weight-light">SIA UNIROW TUBAN</span>
+          <span class="brand-text font-weight-light" id="coba">SIA UNIROW TUBAN</span>
       </a>
 
       <!-- Sidebar -->
@@ -61,7 +61,7 @@ to get the desired effect
                   <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
               </div>
               <div class="info">
-                  <a href="#" class="d-block">Juli Wing Moula</a>
+                  <a href="#" class="d-block">Admin KHS</a>
               </div>
           </div>
 
@@ -202,13 +202,15 @@ to get the desired effect
                                     <div class="row">
                                         <div class="col-md-6">
                                                 <select class="custom-select" id="prodi_search" name="prodi_search">
-                                                    <option selected value="">Semua Jurusan ...</option>
+                                                    <!--<option selected value="">Semua Jurusan ...</option>
                                                     <?php
                                                     $query = "select * from prodi";
                                                     $hasil = mysqli_query($koneksi, $query);
                                                     while ($qtabel = mysqli_fetch_assoc($hasil)){
                                                       echo '<option value="'.$qtabel['namaProdi'].'">'.$qtabel['namaProdi'].'</option>';
-                                                    } ?>
+                                                    } ?>-->
+
+                                                    <option value=""></option>
                                                 </select>
                                         </div>
                                         <div class="col-md-5">
@@ -408,6 +410,8 @@ to get the desired effect
 <!-- REQUIRED SCRIPTS -->
 <!-- jQuery -->
     <script src="../../plugins/jquery/jquery.min.js"></script>
+    <script src="../../dist/js/jquery.js"></script>
+    <script src="json-to-table.js"></script>
 <!-- Bootstrap -->
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE -->
