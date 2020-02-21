@@ -202,15 +202,7 @@ to get the desired effect
                                     <div class="row">
                                         <div class="col-md-6">
                                                 <select class="custom-select" id="prodi_search" name="prodi_search">
-                                                    <!--<option selected value="">Semua Jurusan ...</option>
-                                                    <?php
-                                                    $query = "select * from prodi";
-                                                    $hasil = mysqli_query($koneksi, $query);
-                                                    while ($qtabel = mysqli_fetch_assoc($hasil)){
-                                                      echo '<option value="'.$qtabel['namaProdi'].'">'.$qtabel['namaProdi'].'</option>';
-                                                    } ?>-->
-
-                                                    <option id="coba"></option>
+                                                    <option value="all_studi" selected>Cari Program Studi</option>
                                                 </select>
                                         </div>
                                         <div class="col-md-5">
@@ -409,9 +401,10 @@ to get the desired effect
 
 <!-- REQUIRED SCRIPTS -->
 <!-- jQuery -->
-    <script src="../../plugins/jquery/jquery.min.js"></script>
-    <script src="../../dist/js/jquery.js"></script>
-    <script src="json-to-table.js"></script>
+        <script src="../../plugins/jquery/jquery.min.js"></script>
+        <script src="../../dist/js/jquery.js"></script>
+        <script src="my_script.js"></script>
+
 <!-- Bootstrap -->
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE -->
@@ -421,7 +414,7 @@ to get the desired effect
     <script src="../../plugins/chart.js/Chart.min.js"></script>
     <script src="../../dist/js/demo.js"></script>
     <script src="../../dist/js/pages/dashboard.js"></script>
-    <script src="index.js"></script>
+
       
 
 </body>
